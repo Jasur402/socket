@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
 socket.on("connection", (connection) => {
   console.log("New client connected", connection.id);
 
-  connection.on("message", (msg) => {
-    socket.emit("message", msg)
+  connection.on("chat", (msg) => {
+    socket.emit("chat", msg)
   })
 });
 

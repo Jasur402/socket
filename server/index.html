@@ -17,10 +17,10 @@
       const textarea = document.querySelector("#textarea");
 
       form.addEventListener("submit", (event) => {
-         event.preventDefault();
-       const message = textarea.value;
+        event.preventDefault();
+        const message =`Server: ${textarea.value}` 
         textarea.value = "";
-        socket.emit("message", message);  
+        socket.emit("chat", message);
       });
     </script>
   </body>
