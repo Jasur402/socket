@@ -18,7 +18,7 @@ textarea.addEventListener("input", () => {
 });
 
 textarea.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
+  if (e.key === "Enter" ||  e.ctrlKey && e.key === "Enter") {
     if (textarea.value.trim() !== "") {
       e.preventDefault();
       form.requestSubmit();
