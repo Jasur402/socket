@@ -1,0 +1,19 @@
+.message {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  gap: 0.5rem;
+}
+.user {margin: 0;
+  color: white;
+  font-weight: bold;
+}
+.message-text { margin: 0;
+  font-size: 18px;
+  background-color: #444;
+  color: white;
+  padding: 0.2rem 0.75rem;
+  border-radius: 14px;
+  width: fit-content;
+  max-width: 40%;
+}

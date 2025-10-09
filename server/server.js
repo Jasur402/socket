@@ -1,6 +1,6 @@
-const express = require("express");
-const { createServer } = require("http");
-const { Server } = require("socket.io");
+const  express = require("express");
+const {createServer}  = require("http");
+const {Server}  = require("socket.io");
 
 const PORT = 3000;
 
@@ -18,6 +18,10 @@ app.get("/", (req, res) => {
 
 socket.on("connection", (connection) => {
   console.log("New client connected", connection.id);
+
+  connection.on("login", (name) => {
+    socket.emit("login", name)
+  })
 
   connection.on("chat", (msg) => {
     socket.emit("chat", msg)

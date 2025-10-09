@@ -1,19 +1,25 @@
+import "./MessageList.css";
 import Message from "./Message";
 import Data from "./Date";
 
-function MessageList() {
+type Props = {
+  messages?: string[];
+  className?: string;
+};
+
+function MessageList(props: Props) {
   const date: string = new Date().toLocaleString("ru-RU", {
     timeZone: "Europe/Berlin",
     hour: "2-digit",
-    minute: "2-digit",    
+    minute: "2-digit",
   });
 
-  const user: string = "Jasur";
-  
   return (
-    <div className="message-list">
-      <Data className="date" date={date}/>
-      <Message user={`${user} :`} text="Hi" />
+    <div className={props.className}>
+      <Data className="date" date={date} />
+      {props.messages?.map((message) => (
+        <Message text={message} />
+      ))}
     </div>
   );
 }
