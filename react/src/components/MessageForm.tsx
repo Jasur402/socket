@@ -1,8 +1,9 @@
 import "./MessageForm.css";
 import useSocket from "../hooks/useSocket";
-import { useEffect, useState } from "react";
+import {useContext, useState,} from "react";
 import Button from "../shared-components/Button";
 import TextField from "../shared-components/TextFieled";
+import {UserNameContext} from "../context/UserNameContext";
 
 type Props = {
   className?: string;
@@ -10,30 +11,18 @@ type Props = {
 
 function MessageForm(props: Props) {
   const socket = useSocket();
-  const [userName, setUserName] = useState<string>("");
-
-  useEffect(() => {
-    if (socket) {
-      socket.on("login", (name: string) => {
-        setUserName(name);
-      });
-    }
-    return () => {
-      if (socket) {
-        socket.off("login");
-      }
-    };
-  }, [socket]);
 
   const state = useState("");
   const message = state[0];
   const setMessage = state[1];
 
+  const username = useContext(UserNameContext);
+
   function onSubmit(evt?: React.FormEvent<HTMLElement>) {
     if (evt) evt.preventDefault();
     setMessage("");
     if (socket) {
-      socket.emit("chat", `${userName}: ${message}`);
+      socket.emit("chat", `${username} : ${message}`);
     }
   }
 

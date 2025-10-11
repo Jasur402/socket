@@ -1,27 +1,25 @@
 import "./LoginForm.css";
-import useSocket from "../hooks/useSocket";
 import { useState } from "react";
 import Button from "../shared-components/Button";
 import TextField from "../shared-components/TextFieled";
 
 type Props = {
   className?: string;
+  onSubmit?: () => void;
   onClick?: () => void;
+  setUserName: (name:string) => void;
 };
 
-function MessageList(props: Props) {
-  const socket = useSocket();
-  const state = useState("");
-  const userName = state[0];
-  const setUserName = state[1];
+function LoginForm(props: Props) {
+  const [userName, setUserName  ] = useState("");
 
-  function onSubmit(evt: React.FormEvent<HTMLElement>) {
-    evt.preventDefault();
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    props.setUserName(userName); 
     setUserName("");
-    if (socket) {
-      socket.emit("login", userName);
-    }
+    props.onClick?.(); 
   }
+
   return (
     <form className={props.className} onSubmit={onSubmit}>
       <div className="login-title">Войдите в чат под своим именем</div>
@@ -32,9 +30,9 @@ function MessageList(props: Props) {
         onChange={setUserName}
         variant="input"
       />
-      <Button onClick={props.onClick} className="login-button" label="Войти" type="submit" />
+      <Button className="login-button" label="Войти" type="submit" />
     </form>
   );
 }
 
-export default MessageList;
+export default LoginForm;

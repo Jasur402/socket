@@ -1,13 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,  } from "react";
 import { useRoutes, useNavigate } from "react-router-dom";
 import useSocket from "./hooks/useSocket";
 import Welcome from "./pages/Welcome";
 import Chat from "./pages/Chat";
 import "./App.css";
+import { UserNameContext } from "./context/UserNameContext";
+
 
 function App() {
   const socket = useSocket();
   const [fooEvents, setFooEvents] = useState<string[]>([]);
+  
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     if (socket) {
@@ -21,21 +25,25 @@ function App() {
       }
     };
   }, [socket]);
+
   const navigate = useNavigate();
+
   function enterChat() {
     navigate("/chat");
   }
 
   const routes = [
-    { path: "/", element: <Welcome onClick={enterChat} /> },
+    { path: "/", element: <Welcome setUserName={setUsername}  onClick={enterChat} /> },
     { path: "/chat", element: <Chat className="chat" messages={fooEvents} /> },
   ];
-
-  const element = useRoutes(routes);
+ const element = useRoutes(routes);
+ 
   return (
     <div>
-      {element}
-    </div>
+      <UserNameContext.Provider value={username}>
+        {element}
+      </UserNameContext.Provider>
+    </div>  
   );
 }
 
