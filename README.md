@@ -1,57 +1,57 @@
-# Проект Socket
+# Socket Project
 
-Этот проект состоит из двух частей:
+This project consists of two parts:
 
-- **react/** — клиент на React с использованием сокетов
-- **server/** — сервер на Node.js с поддержкой socket.io
+- **react/** — React client using sockets
+- **server/** — Node.js server with socket.io support
 
-## Запуск
+## Running
 
-### Сервер
+### Server
 
-1. Перейдите в папку `server`
-2. Установите зависимости:
+1. Navigate to the `server` folder
+2. Install dependencies:
 
    ```
    npm install
    ```
 
-3. Запустите сервер:
+3. Start the server:
 
    ```
    node server.js
    ```
 
 
-### Клиент (React)
+### Client (React)
 
-1. Перейдите в папку `react`
-2. Установите зависимости:
+1. Navigate to the `react` folder
+2. Install dependencies:
 
    ```
    npm install
    ```
 
-3. Запустите приложение:
+3. Start the application:
 
    ```
    npm run dev
    ```
 
-## Используемые технологии
+## Technologies Used
 
 - React
 - Vite
 - Socket.io
 - Node.js
 
-## Структура папок
+## Folder Structure
 
 ```
 react/
 server/
 ```
 
-## Автор
+## Author
 
 -Jasurbek Ubaidulloev

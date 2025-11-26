@@ -1,19 +1,58 @@
 .message {
   display: flex;
-  flex-direction: row;
-  margin-top: 5px;
-  gap: 0.5rem;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 0.25rem;
 }
-.user {margin: 0;
+
+/* Исходящие сообщения (от текущего пользователя) */
+.message-own {
+  align-items: flex-end;
+}
+
+.message-own .message-text {
+  background-color: #007bff;
   color: white;
-  font-weight: bold;
+  border-radius: 18px 18px 4px 18px;
 }
-.message-text { margin: 0;
-  font-size: 18px;
+
+/* Входящие сообщения (от других пользователей) */
+.message-other {
+  align-items: flex-start;
+}
+
+.message-other .message-text {
   background-color: #444;
   color: white;
-  padding: 0.2rem 0.75rem;
-  border-radius: 14px;
+  border-radius: 18px 18px 18px 4px;
+}
+
+.message-text {
+  margin: 0;
+  font-size: 16px;
+  padding: 8px 12px;
   width: fit-content;
-  max-width: 40%;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.message-sender {
+  font-size: 12px;
+  color: #888;
+  font-weight: bold;
+  margin-bottom: 2px;
+  padding-left: 8px;
+}
+
+.message-time {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+  padding: 0 8px;
+}
+
+.user {
+  margin: 0;
+  color: white;
+  font-weight: bold;
 }

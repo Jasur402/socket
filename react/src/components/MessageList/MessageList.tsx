@@ -1,9 +1,10 @@
 import "./MessageList.css";
 import Message from "./Message";
 import Data from "./Date";
+import type { MessageData } from "../../types/message";
 
 type Props = {
-  messages?: string[];
+  messages?: MessageData[];
   className?: string;
 };
 
@@ -18,7 +19,7 @@ function MessageList(props: Props) {
     <div className={props.className}>
       <Data className="date" date={date} />
       {props.messages?.map((message) => (
-        <Message text={message} />
+        <Message key={message.id} message={message} />
       ))}
     </div>
   );

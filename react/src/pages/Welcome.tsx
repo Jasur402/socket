@@ -4,7 +4,7 @@ import "./Welcome.css"
 
 type Props = {
   onClick?: () => void;
-  setUserName: (name: string) => void;
+  setUserName?: (name: string) => void;
 };
 
 function Welcome(props: Props) {

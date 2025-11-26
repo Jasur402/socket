@@ -1,9 +1,9 @@
 import "./MessageForm.css";
 import useSocket from "../hooks/useSocket";
-import {useContext, useState,} from "react";
+import { useContext, useState } from "react";
 import Button from "../shared-components/Button";
 import TextField from "../shared-components/TextFieled";
-import {UserNameContext} from "../context/UserNameContext";
+import { UserNameContext } from "../context/UserNameContext";
 
 type Props = {
   className?: string;
@@ -20,9 +20,16 @@ function MessageForm(props: Props) {
 
   function onSubmit(evt?: React.FormEvent<HTMLElement>) {
     if (evt) evt.preventDefault();
-    setMessage("");
-    if (socket) {
-      socket.emit("chat", `${username} : ${message}`);
+
+    if (message.trim() && socket && username) {
+      const messageData = {
+        sender: username,
+        text: message.trim(),
+        timestamp: new Date().toISOString(),
+      };
+
+      socket.emit("chat", messageData);
+      setMessage("");
     }
   }
 
@@ -38,7 +45,7 @@ function MessageForm(props: Props) {
   return (
     <form className={props.className} onSubmit={onSubmit}>
       <TextField
-        placeholder="Введите сообщение..."
+        placeholder="enter your message..."
         className="message-input"
         value={message}
         onChange={setMessage}
@@ -48,7 +55,7 @@ function MessageForm(props: Props) {
       <Button
         disabled={message.trim().length === 0}
         className="message-submit"
-        label="Отправить"
+        label="Send"
         type="submit"
       />
     </form>

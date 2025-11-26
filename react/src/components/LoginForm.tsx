@@ -7,7 +7,7 @@ type Props = {
   className?: string;
   onSubmit?: () => void;
   onClick?: () => void;
-  setUserName: (name:string) => void;
+  setUserName?: (name:string) => void;
 };
 
 function LoginForm(props: Props) {
@@ -15,22 +15,22 @@ function LoginForm(props: Props) {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    props.setUserName(userName); 
+    props.setUserName?.(userName);
     setUserName("");
     props.onClick?.(); 
   }
 
   return (
     <form className={props.className} onSubmit={onSubmit}>
-      <div className="login-title">Войдите в чат под своим именем</div>
+      <div className="login-title">Log in to the chat using your name</div>
       <TextField
         className="login-input"
-        placeholder="Введите ваше имя"
+        placeholder="Enter your name"
         value={userName}
         onChange={setUserName}
         variant="input"
       />
-      <Button className="login-button" label="Войти" type="submit" />
+      <Button className="login-button" label="Log in" type="submit" />
     </form>
   );
 }
